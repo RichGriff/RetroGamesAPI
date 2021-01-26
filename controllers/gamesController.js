@@ -22,4 +22,19 @@ const getGameById = asyncHandler(async (req, res) => {
   }
 });
 
-export { getAllGames, getGameById };
+// @desc    Fetch games by platform
+// @route   GET /api/games?platform=platform
+// @access  Public
+const getGameByPlatform = asyncHandler(async (req, res) => {
+  const platform = req.params.platform;
+  const game = await Game.find({ platforms: platform });
+
+  if (game.length !== 0) {
+    res.json(game);
+  } else {
+    res.status(404);
+    throw new Error(`No Games found on ${platform}`);
+  }
+});
+
+export { getAllGames, getGameById, getGameByPlatform };

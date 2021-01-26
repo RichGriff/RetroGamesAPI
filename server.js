@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   res.send("API is Running...");
 });
 
-app.use("/games", gameRoutes);
+app.use("/api/games", gameRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
